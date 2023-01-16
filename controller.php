@@ -1,5 +1,5 @@
 <?php 
-include 'sql.php';
+include 'model.php';
 
 function printTable(){
     $db = new Database();

@@ -1,6 +1,6 @@
 <?php
 include 'controller.php';
-require_once('sql.php');
+require_once('model.php');
 
 if(isset($_POST['done'])){
     if(!isset($_POST['undo'])){

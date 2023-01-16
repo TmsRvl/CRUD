@@ -38,6 +38,7 @@ table form{
 
 table input:hover{
     color: #0483aa;
+    font-size: 12px;
 }
 
 #add{
