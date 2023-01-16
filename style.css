@@ -1,11 +1,12 @@
 /* main page style */
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
 table{
-    width: 80%;
+    width: 100%;
 }
 
 th, td{
@@ -39,6 +40,7 @@ table form{
 table input:hover{
     color: #0483aa;
     font-size: 12px;
+    background-color: rgb(240, 240, 240);
 }
 
 #add{
