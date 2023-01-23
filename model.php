@@ -60,4 +60,17 @@ class Database{
             die("ERRORE: Impossibile eseguire l'operazione nel database");
         }
     }
+
+    function getKeys(){
+        $table = $this->selectAll();
+        $keys;
+        foreach ($table as $arr) {
+            foreach ($arr as $key => $value) {
+                if(!is_numeric($key))
+                    $keys[] = $key;
+            }
+            break;
+        }
+        return $keys;
+    }
 }

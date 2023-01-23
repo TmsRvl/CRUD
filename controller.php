@@ -10,14 +10,11 @@ function printTable(){
         if($firstIteration){
             echo '<tr>';
             foreach ($arr as $key => $value) {
-                global $keys;
                 if(!is_numeric($key)){
                     echo '<th>' . ucfirst($key) . '</th>';
-                    $keys .= $key . ',';
                     $firstIteration = false;
                 }
             }
-            setcookie('keys', $keys);
             echo '<th colspan="3"> Azioni </th>';
             echo '</tr>';
         }
@@ -46,20 +43,21 @@ function createBtn($name, $data){
 }
 
 function printForm($name, $data){
+    $db = new Database();
     $type = ($name == 'Aggiungi') ? 0 : (($name == 'Modifica') ? 1 : 2 );
     $elm = ($type != 0) ? explode(',', $data) : ''; 
-    $keys = explode(',', $_COOKIE['keys']);
+    $keys = $db->getKeys();
 
     echo '<div><h1>'.$name.'</h1>
     <form action="detail_page.php" method="post" autocomplete="off">';
-    for ($i=0; $i < sizeof($keys)-1; $i++) { 
+    for ($i=0; $i < sizeof($keys); $i++) { 
         echo createInput($keys[$i], ($type != 0) ? $elm[$i] : '', $type). '<br>';
     }
     echo ($name != 'Visualizza') ? '<input type="submit" value="'. $name .'">' : '';
-    echo '<input type="submit" name="undo" value="Annulla">';
-    echo '<input type="text" name="done" hidden>';
-    echo '<input type="text" name="type" value="'.$name.'" hidden>';
-    echo '</form></div>';
+    echo '<input type="submit" name="undo" value="Annulla">'
+    . '<input type="text" name="done" hidden>'
+    . '<input type="text" name="type" value="'.$name.'" hidden>'
+    . '</form></div>';
 }
 
 function createInput($name, $info, $type){
