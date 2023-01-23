@@ -2,7 +2,6 @@
 include 'controller.php';
 require_once('model.php');
 
-print_r($_POST);
 if(isset($_POST['done'])){
     if(!isset($_POST['undo'])){
         $db = new Database();

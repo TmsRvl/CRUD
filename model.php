@@ -62,14 +62,14 @@ class Database{
     }
 
     function getKeys(){
-        $table = $this->selectAll();
+        $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='registro' AND TABLE_NAME='".$this->table."'";
+        $table = $this->pdo->query($sql);   
         $keys;
-        foreach ($table as $arr) {
-            foreach ($arr as $key => $value) {
-                if(!is_numeric($key))
-                    $keys[] = $key;
+        foreach($table as $key => $value){
+            foreach($value as $k => $v){
+                if(is_numeric($k))
+                $keys[] = $v;
             }
-            break;
         }
         return $keys;
     }
